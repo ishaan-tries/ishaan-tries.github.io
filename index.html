@@ -7,16 +7,38 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <!-- Icon Library -->
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
+            background-color: #0F172A; /* slate-900 */
+            color: #CBD5E1; /* slate-300 */
         }
-        /* Simple animation for section fade-in */
+        .text-gradient {
+            background: linear-gradient(to right, #22D3EE, #A5B4FC);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* Typing effect */
+        .typing-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 1.8rem;
+            background-color: #22D3EE;
+            animation: blink 1s infinite;
+            margin-left: 4px;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        /* Section fade-in animation */
         .fade-in-section {
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
         }
         .fade-in-section.is-visible {
             opacity: 1;
@@ -24,159 +46,276 @@
         }
     </style>
 </head>
-<body class="bg-slate-900 text-slate-300">
+<body class="selection:bg-cyan-500/30">
 
     <!-- Header & Navigation -->
-    <header class="bg-slate-900/70 backdrop-blur-lg sticky top-0 z-50">
+    <header class="bg-slate-900/80 backdrop-blur-lg sticky top-0 z-50 border-b border-slate-800">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-white">Ishaan Joshi</a>
-            <div class="hidden md:flex space-x-6">
+            <a href="#" class="text-2xl font-bold text-white tracking-tight">Ishaan Joshi</a>
+            <div class="hidden md:flex items-center space-x-8 text-sm font-medium text-slate-400">
                 <a href="#about" class="hover:text-cyan-400 transition-colors">About</a>
-                <a href="#experience" class="hover:text-cyan-400 transition-colors">Experience</a>
+                <a href="#skills" class="hover:text-cyan-400 transition-colors">Skills</a>
+                <a href="#journey" class="hover:text-cyan-400 transition-colors">Journey</a>
                 <a href="#projects" class="hover:text-cyan-400 transition-colors">Projects</a>
-                <a href="#contact" class="hover:text-cyan-400 transition-colors">Contact</a>
+                <a href="#contact" class="bg-slate-800 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded-lg transition-colors">
+                    Contact
+                </a>
             </div>
             <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
             </button>
         </nav>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden">
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-900">
             <a href="#about" class="block py-2 px-4 text-sm hover:bg-slate-800">About</a>
-            <a href="#experience" class="block py-2 px-4 text-sm hover:bg-slate-800">Experience</a>
+            <a href="#skills" class="block py-2 px-4 text-sm hover:bg-slate-800">Skills</a>
+            <a href="#journey" class="block py-2 px-4 text-sm hover:bg-slate-800">Journey</a>
             <a href="#projects" class="block py-2 px-4 text-sm hover:bg-slate-800">Projects</a>
             <a href="#contact" class="block py-2 px-4 text-sm hover:bg-slate-800">Contact</a>
         </div>
     </header>
 
-    <main class="container mx-auto px-6 py-12">
+    <main class="container mx-auto px-6 py-16 md:py-24">
 
         <!-- Hero Section -->
-        <section id="hero" class="flex flex-col-reverse md:flex-row items-center justify-between min-h-[70vh]">
-            <div class="md:w-1/2 text-center md:text-left">
-                <h1 class="text-4xl md:text-6xl font-bold text-white leading-tight">
-                    Data Scientist &<br>AI Developer
+        <section id="hero" class="flex flex-col md:flex-row items-center justify-between min-h-[70vh]">
+            <div class="md:w-3/5 text-center md:text-left">
+                <h1 class="text-4xl md:text-6xl font-black text-white leading-tight">
+                    Hi, I'm Ishaan Joshi
                 </h1>
-                <p class="mt-4 text-lg text-slate-400">
-                    M.S. in Data Science and AI student at DIT, passionate about building intelligent solutions that drive data-driven decisions.
+                <h2 class="text-2xl md:text-4xl font-bold mt-2 h-12">
+                    <span class="text-gradient" id="typing-effect"></span><span class="typing-cursor"></span>
+                </h2>
+                <p class="mt-4 text-lg text-slate-400 max-w-xl mx-auto md:mx-0">
+                    A Master's student in AI & Data Science based in Germany, transforming complex data into intelligent, actionable insights.
                 </p>
-                <div class="mt-8 flex justify-center md:justify-start space-x-4">
+                <div class="mt-8 flex justify-center md:justify-start items-center space-x-4">
                     <a href="#contact" class="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-3 px-6 rounded-lg transition-transform transform hover:scale-105">
                         Get In Touch
                     </a>
-                    <a href="https://www.linkedin.com/in/ishaan-joshi1414" target="_blank" class="bg-slate-800 hover:bg-slate-700 text-white font-bold py-3 px-6 rounded-lg transition-transform transform hover:scale-105">
-                        LinkedIn
+                    <a href="https://www.linkedin.com/in/ishaan-joshi1414" target="_blank" class="text-slate-400 hover:text-white transition-colors" aria-label="LinkedIn">
+                        <i data-lucide="linkedin" class="w-7 h-7"></i>
+                    </a>
+                    <a href="https://github.com/ishaan-tries" target="_blank" class="text-slate-400 hover:text-white transition-colors" aria-label="GitHub">
+                        <i data-lucide="github" class="w-7 h-7"></i>
+                    </a>
+                    <!-- Add a link to your resume PDF here -->
+                    <a href="https://github.com/ishaan-tries/ishaan-tries.github.io/blob/main/resume%20latest%20july%202025.pdf" class="text-cyan-400 font-semibold hover:underline flex items-center">
+                        Download CV <i data-lucide="download" class="w-4 h-4 ml-2"></i>
                     </a>
                 </div>
             </div>
-            <div class="md:w-1/2 flex justify-center mb-10 md:mb-0">
-                <!-- Replace with your actual photo URL -->
-                <img src="CV UPDATE.JPG" alt="Ishaan Joshi" class="rounded-full w-64 h-64 md:w-80 md:h-80 object-cover border-4 border-slate-700 shadow-lg">
+            <div class="md:w-2/5 flex justify-center mt-12 md:mt-0">
+                 <!-- IMPORTANT: Replace with your actual photo URL -->
+                <div class="w-64 h-64 md:w-80 md:h-80 rounded-full bg-slate-800 relative shadow-2xl">
+                    <img src="CV UPDATE.JPG" onerror="this.onerror=null;this.src='https://placehold.co/400x400/0F172A/94A3B8?text=IJ';" alt="Ishaan Joshi" class="rounded-full w-full h-full object-cover p-2">
+                    <div class="absolute -bottom-4 -right-4 bg-slate-700 p-3 rounded-full shadow-lg">
+                        <i data-lucide="cpu" class="text-cyan-400 w-8 h-8"></i>
+                    </div>
+                </div>
             </div>
         </section>
 
         <!-- About Me Section -->
-        <section id="about" class="py-20 fade-in-section">
-            <h2 class="text-3xl font-bold text-center text-white mb-12">About Me</h2>
-            <div class="max-w-3xl mx-auto text-center text-slate-400 text-lg leading-relaxed">
-                <p>
-                    I am a Master's student in Artificial Intelligence and Data Science with a strong foundation in Python, machine learning, and SQL. My journey began with a Bachelor's in AI, where I developed a passion for solving complex problems through data.
-                </p>
-                <p class="mt-4">
-                    From leading digital operations for MUN conferences to developing predictive models during my internships, I thrive on turning raw data into actionable insights. I am currently deepening my expertise in Germany and am actively seeking opportunities where I can apply my skills to real-world challenges.
-                </p>
+        <section id="about" class="py-24 fade-in-section">
+            <h2 class="text-3xl font-bold text-center text-white mb-4">About Me</h2>
+            <p class="text-center text-cyan-400 font-medium mb-12">My Story</p>
+            <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="text-slate-400 text-lg leading-relaxed">
+                    <p>
+                        I am a driven and curious Data Science student, currently pursuing a joint Master's degree from the **Deggendorf Institute of Technology (Germany)** and the **University of South Bohemia (Czech Republic)**. My journey into the world of AI began during my Bachelor's, where I discovered a passion for uncovering the stories hidden within data.
+                    </p>
+                    <p class="mt-4">
+                        Beyond academics, I thrive on practical challenges. Whether it's leading a technical team for a university conference, developing predictive models in an internship, or engineering a race-winning soapbox car, I am committed to applying my skills to build effective and innovative solutions. I am now seeking opportunities to contribute to a forward-thinking team and solve real-world problems.
+                    </p>
+                </div>
+                <div class="bg-slate-800/50 p-6 rounded-lg border border-slate-700">
+                    <h3 class="font-bold text-white text-lg mb-4">Core Philosophy</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i data-lucide="database-zap" class="w-5 h-5 text-cyan-400 mr-3 mt-1 flex-shrink-0"></i>
+                            <span><strong class="text-white">Data-Driven Decisions:</strong> I believe the best solutions are built on a foundation of solid data and rigorous analysis.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-lucide="users" class="w-5 h-5 text-cyan-400 mr-3 mt-1 flex-shrink-0"></i>
+                             <span><strong class="text-white">Collaborative Spirit:</strong> I thrive in team environments where diverse skills come together to create something greater than the sum of its parts.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-lucide="trending-up" class="w-5 h-5 text-cyan-400 mr-3 mt-1 flex-shrink-0"></i>
+                            <span><strong class="text-white">Continuous Learning:</strong> The field of AI is always evolving, and I am committed to constantly expanding my knowledge and skills.</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </section>
 
-        <!-- Experience Section -->
-        <section id="experience" class="py-20 fade-in-section">
-            <h2 class="text-3xl font-bold text-center text-white mb-12">Experience</h2>
+        <!-- Skills Section -->
+        <section id="skills" class="py-24 fade-in-section">
+            <h2 class="text-3xl font-bold text-center text-white mb-4">Technical Skills</h2>
+            <p class="text-center text-cyan-400 font-medium mb-12">My Toolbox & Expertise</p>
+            <div class="max-w-5xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Category 1: Data Science & ML -->
+                    <div class="bg-slate-800/50 p-6 rounded-lg border border-slate-700">
+                        <div class="flex items-center mb-4">
+                            <i data-lucide="brain-circuit" class="w-8 h-8 text-cyan-400"></i>
+                            <h3 class="text-xl font-bold text-white ml-4">Data Science & ML</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full">Machine Learning</span>
+                            <span class="bg-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full">Deep Learning</span>
+                            <span class="bg-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full">NLP</span>
+                            <span class="bg-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full">Pandas & NumPy</span>
+                            <span class="bg-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full">Scikit-learn</span>
+                            <span class="bg-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full">TensorFlow & Keras</span>
+                            <span class="bg-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full">Statistical Analysis</span>
+                        </div>
+                    </div>
+                    <!-- Category 2: Programming & Databases -->
+                    <div class="bg-slate-800/50 p-6 rounded-lg border border-slate-700">
+                        <div class="flex items-center mb-4">
+                            <i data-lucide="code" class="w-8 h-8 text-cyan-400"></i>
+                            <h3 class="text-xl font-bold text-white ml-4">Programming & Databases</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full">Python</span>
+                            <span class="bg-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full">SQL</span>
+                            <span class="bg-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full">Java</span>
+                            <span class="bg-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full">C++</span>
+                            <span class="bg-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full">HTML/CSS</span>
+                            <span class="bg-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full">DSA</span>
+                            <span class="bg-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full">OOP</span>
+                        </div>
+                    </div>
+                    <!-- Category 3: Tools & Platforms -->
+                    <div class="bg-slate-800/50 p-6 rounded-lg border border-slate-700">
+                        <div class="flex items-center mb-4">
+                            <i data-lucide="terminal-square" class="w-8 h-8 text-cyan-400"></i>
+                            <h3 class="text-xl font-bold text-white ml-4">Tools & Platforms</h3>
+                        </div>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full">Git & GitHub</span>
+                            <span class="bg-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full">Docker</span>
+                            <span class="bg-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full">Microsoft Azure</span>
+                            <span class="bg-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full">Power BI</span>
+                            <span class="bg-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full">Jira</span>
+                            <span class="bg-slate-700 text-slate-300 text-sm font-medium px-3 py-1 rounded-full">VS Code</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Journey / Timeline Section -->
+        <section id="journey" class="py-24 fade-in-section">
+            <h2 class="text-3xl font-bold text-center text-white mb-4">My Journey</h2>
+            <p class="text-center text-cyan-400 font-medium mb-16">Education, Accolades & Leadership</p>
             <div class="max-w-3xl mx-auto relative">
                 <!-- Vertical line -->
-                <div class="absolute left-4 md:left-1/2 h-full border-l-2 border-slate-700"></div>
+                <div class="absolute left-5 h-full border-l-2 border-slate-700"></div>
                 
-                <!-- Experience Item 1 -->
-                <div class="mb-8 flex justify-between items-center w-full right-timeline">
-                    <div class="order-1 md:w-5/12"></div>
-                    <div class="z-20 flex items-center order-1 bg-slate-800 shadow-xl w-8 h-8 rounded-full">
-                        <h1 class="mx-auto font-semibold text-lg text-white">1</h1>
+                <!-- Item 1: Master's Degree -->
+                <div class="mb-12 pl-12 relative">
+                    <div class="absolute left-0 top-1 z-10 bg-cyan-500 w-10 h-10 rounded-full flex items-center justify-center ring-8 ring-slate-900">
+                        <i data-lucide="graduation-cap" class="text-white"></i>
                     </div>
-                    <div class="order-1 bg-slate-800 rounded-lg shadow-xl w-full md:w-5/12 px-6 py-4">
-                        <p class="text-sm text-slate-400">Aug 2023 – Feb 2025</p>
-                        <h3 class="font-bold text-white text-xl">Independent Researcher & Developer</h3>
-                        <p class="text-sm font-medium text-cyan-400">Academic & Personal Projects</p>
-                        <p class="text-sm text-slate-400 mt-2">Co-authored two research papers in NLP, competed in hackathons like the Smart India Hackathon, and developed personal projects to deepen ML expertise.</p>
-                    </div>
+                    <p class="text-sm text-slate-400">2025 – Present</p>
+                    <h3 class="text-xl font-bold text-white mt-1">M.Sc. in Artificial Intelligence & Data Science</h3>
+                    <p class="text-md font-medium text-slate-300">Deggendorf Institute of Technology & University of South Bohemia</p>
+                    <p class="text-slate-400 mt-2 text-sm">A joint degree program deepening my expertise in advanced AI concepts and practical data science applications across Germany and the Czech Republic.</p>
                 </div>
 
-                <!-- Experience Item 2 -->
-                <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
-                    <div class="order-1 md:w-5/12"></div>
-                    <div class="z-20 flex items-center order-1 bg-slate-800 shadow-xl w-8 h-8 rounded-full">
-                        <h1 class="mx-auto text-white font-semibold text-lg">2</h1>
+                <!-- Item 2: Award -->
+                <div class="mb-12 pl-12 relative">
+                    <div class="absolute left-0 top-1 z-10 bg-amber-500 w-10 h-10 rounded-full flex items-center justify-center ring-8 ring-slate-900">
+                        <i data-lucide="award" class="text-white"></i>
                     </div>
-                    <div class="order-1 bg-slate-800 rounded-lg shadow-xl w-full md:w-5/12 px-6 py-4">
-                        <p class="text-sm text-slate-400">May 2023 – July 2023</p>
-                        <h3 class="font-bold text-white text-xl">Data Science Intern</h3>
-                        <p class="text-sm font-medium text-cyan-400">Celebal Technologies</p>
-                        <p class="text-sm text-slate-400 mt-2">Led the development of a predictive model for a weather pollution index using Python, Pandas, and Scikit-learn.</p>
-                    </div>
-                </div>
-                
-                <!-- Experience Item 3 -->
-                <div class="mb-8 flex justify-between items-center w-full right-timeline">
-                    <div class="order-1 md:w-5/12"></div>
-                    <div class="z-20 flex items-center order-1 bg-slate-800 shadow-xl w-8 h-8 rounded-full">
-                        <h1 class="mx-auto font-semibold text-lg text-white">3</h1>
-                    </div>
-                    <div class="order-1 bg-slate-800 rounded-lg shadow-xl w-full md:w-5/12 px-6 py-4">
-                        <p class="text-sm text-slate-400">July 2022 – Sep 2022</p>
-                        <h3 class="font-bold text-white text-xl">Software Development Intern</h3>
-                        <p class="text-sm font-medium text-cyan-400">STPI</p>
-                        <p class="text-sm text-slate-400 mt-2">Engineered a Python-based application and assisted with data management tasks using SQL.</p>
-                    </div>
+                    <p class="text-sm text-slate-400">July 2025</p>
+                    <h3 class="text-xl font-bold text-white mt-1">1st Place & Best Design Award</h3>
+                    <p class="text-md font-medium text-slate-300">DIT Digital Car & Innovation Competition</p>
+                    <p class="text-slate-400 mt-2 text-sm">Served as Steering Engineer for our team, leading to a dual victory for performance and innovative design in a university-wide competition.</p>
                 </div>
 
+                <!-- Item 3: Bachelor's Degree -->
+                 <div class="mb-12 pl-12 relative">
+                    <div class="absolute left-0 top-1 z-10 bg-cyan-500 w-10 h-10 rounded-full flex items-center justify-center ring-8 ring-slate-900">
+                        <i data-lucide="graduation-cap" class="text-white"></i>
+                    </div>
+                    <p class="text-sm text-slate-400">2020 – 2024</p>
+                    <h3 class="text-xl font-bold text-white mt-1">B.Tech in Artificial Intelligence & Data Science</h3>
+                    <p class="text-md font-medium text-slate-300">JECRC University, Jaipur (CGPA: 8.29/10)</p>
+                     <p class="text-slate-400 mt-2 text-sm">Graduated with a strong foundation in core AI/ML concepts, complemented by leadership roles and multiple research publications.</p>
+                </div>
+
+                <!-- Item 4: Leadership -->
+                <div class="mb-12 pl-12 relative">
+                    <div class="absolute left-0 top-1 z-10 bg-indigo-500 w-10 h-10 rounded-full flex items-center justify-center ring-8 ring-slate-900">
+                        <i data-lucide="users" class="text-white"></i>
+                    </div>
+                    <p class="text-sm text-slate-400">2022 - 2024</p>
+                    <h3 class="text-xl font-bold text-white mt-1">Digital Outreach Lead</h3>
+                    <p class="text-md font-medium text-slate-300">JECRC Model United Nations (MUN)</p>
+                    <p class="text-slate-400 mt-2 text-sm">Led the technical and outreach teams for two major university conferences, managing digital operations and event execution.</p>
+                </div>
             </div>
         </section>
 
-
         <!-- Projects Section -->
-        <section id="projects" class="py-20 fade-in-section">
-            <h2 class="text-3xl font-bold text-center text-white mb-12">Projects</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Project 1 -->
-                <div class="bg-slate-800 rounded-lg p-6 transform hover:-translate-y-2 transition-transform duration-300">
-                    <h3 class="text-xl font-bold text-white">CNN Emotion Detector</h3>
-                    <p class="mt-2 text-slate-400">Developed a Convolutional Neural Network to classify human emotions from real-time video, using Python, TensorFlow, and OpenCV.</p>
-                    <div class="mt-4">
-                        <span class="inline-block bg-slate-700 rounded-full px-3 py-1 text-sm font-semibold text-slate-300 mr-2 mb-2">Deep Learning</span>
-                        <span class="inline-block bg-slate-700 rounded-full px-3 py-1 text-sm font-semibold text-slate-300 mr-2 mb-2">Computer Vision</span>
-                        <span class="inline-block bg-slate-700 rounded-full px-3 py-1 text-sm font-semibold text-slate-300 mr-2 mb-2">Python</span>
+        <section id="projects" class="py-24 fade-in-section">
+            <h2 class="text-3xl font-bold text-center text-white mb-4">Projects & Publications</h2>
+            <p class="text-center text-cyan-400 font-medium mb-12">My Work in Action</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Project 1: Emotion Detector -->
+                <div class="bg-slate-800/50 border border-slate-700 rounded-lg overflow-hidden group">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white">CNN Emotion Detector</h3>
+                        <p class="mt-2 text-slate-400 text-sm">A deep learning model built to classify human emotions from live video feeds, showcasing skills in computer vision and real-time data processing.</p>
+                        <div class="mt-4 flex flex-wrap gap-2">
+                            <span class="bg-slate-700 text-slate-300 text-xs font-semibold px-2.5 py-1 rounded-full">Python</span>
+                            <span class="bg-slate-700 text-slate-300 text-xs font-semibold px-2.5 py-1 rounded-full">TensorFlow</span>
+                            <span class="bg-slate-700 text-slate-300 text-xs font-semibold px-2.5 py-1 rounded-full">OpenCV</span>
+                        </div>
                     </div>
                 </div>
-                <!-- Project 2 -->
-                <div class="bg-slate-800 rounded-lg p-6 transform hover:-translate-y-2 transition-transform duration-300">
-                    <h3 class="text-xl font-bold text-white">Digital Car & Innovation Project</h3>
-                    <p class="mt-2 text-slate-400">As Steering Engineer, designed and built a competitive soapbox car, analyzing performance data to optimize design. Won 'Best Design' and 1st Place.</p>
-                     <div class="mt-4">
-                        <span class="inline-block bg-slate-700 rounded-full px-3 py-1 text-sm font-semibold text-slate-300 mr-2 mb-2">Engineering</span>
-                        <span class="inline-block bg-slate-700 rounded-full px-3 py-1 text-sm font-semibold text-slate-300 mr-2 mb-2">Data Analysis</span>
-                        <span class="inline-block bg-slate-700 rounded-full px-3 py-1 text-sm font-semibold text-slate-300 mr-2 mb-2">Team Leadership</span>
+
+                <!-- Project 2: Weather Predictor -->
+                <div class="bg-slate-800/50 border border-slate-700 rounded-lg overflow-hidden group">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white">Weather Pollution Index Prediction</h3>
+                        <p class="mt-2 text-slate-400 text-sm">An internship project at Celebal Technologies to forecast air quality using machine learning models and real-time environmental data.</p>
+                        <div class="mt-4 flex flex-wrap gap-2">
+                            <span class="bg-slate-700 text-slate-300 text-xs font-semibold px-2.5 py-1 rounded-full">Machine Learning</span>
+                            <span class="bg-slate-700 text-slate-300 text-xs font-semibold px-2.5 py-1 rounded-full">Pandas</span>
+                            <span class="bg-slate-700 text-slate-300 text-xs font-semibold px-2.5 py-1 rounded-full">Scikit-learn</span>
+                        </div>
                     </div>
                 </div>
+                
+                <!-- Publication 1: Toxic Comments -->
+                <div class="bg-slate-800/50 border border-slate-700 rounded-lg overflow-hidden group">
+                     <div class="p-6">
+                        <h3 class="text-xl font-bold text-white">Toxic Comment Classification</h3>
+                        <p class="mt-2 text-slate-400 text-sm">Published research in the Pratibha and Journal of Analysis and Computation (JAC) on using NLP to identify and classify harmful online content.</p>
+                        <div class="mt-4 flex flex-wrap gap-2">
+                            <span class="bg-cyan-900/50 text-cyan-300 text-xs font-semibold px-2.5 py-1 rounded-full">Publication</span>
+                            <span class="bg-slate-700 text-slate-300 text-xs font-semibold px-2.5 py-1 rounded-full">NLP</span>
+                            <span class="bg-slate-700 text-slate-300 text-xs font-semibold px-2.5 py-1 rounded-full">Deep Learning</span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="py-20 text-center fade-in-section">
-            <h2 class="text-3xl font-bold text-white">Get In Touch</h2>
-            <p class="mt-4 text-lg text-slate-400 max-w-xl mx-auto">
-                I'm currently seeking new opportunities and would love to hear from you. Whether you have a question or just want to connect, feel free to reach out.
+        <section id="contact" class="py-24 text-center fade-in-section">
+            <h2 class="text-4xl font-black text-white">Let's Connect</h2>
+            <p class="mt-4 text-lg text-slate-400 max-w-2xl mx-auto">
+                I am actively seeking new opportunities in Data Science and AI. If you have a project in mind, a role to fill, or just want to talk about technology, I would love to hear from you.
             </p>
             <div class="mt-8">
-                <a href="mailto:ishaanjoshi.54321@outlook.com" class="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-3 px-8 rounded-lg transition-transform transform hover:scale-105 inline-block">
-                    Say Hello
+                <a href="mailto:ishaanjoshi.54321@outlook.com" class="bg-cyan-500 hover:bg-cyan-600 text-white font-bold py-4 px-8 rounded-lg transition-transform transform hover:scale-105 inline-block text-lg">
+                    ishaanjoshi.54321@outlook.com
                 </a>
             </div>
         </section>
@@ -184,26 +323,54 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-slate-800">
-        <div class="container mx-auto px-6 py-4 text-center text-slate-400">
-            <p>&copy; 2025 Ishaan Joshi. Built with passion and code.</p>
+    <footer class="bg-slate-900 border-t border-slate-800">
+        <div class="container mx-auto px-6 py-6 text-center text-slate-500 text-sm">
+            <p>Designed and built by Ishaan Joshi.</p>
         </div>
     </footer>
 
     <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
         // Mobile menu toggle
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const mobileMenu = document.getElementById('mobile-menu');
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
         });
-
-        // Close mobile menu when a link is clicked
         document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
         });
+
+        // Typing effect
+        const typingText = document.getElementById('typing-effect');
+        const words = ["A Data Scientist", "An AI Developer", "A Problem Solver"];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function type() {
+            const currentWord = words[wordIndex];
+            if (isDeleting) {
+                typingText.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingText.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                setTimeout(() => isDeleting = true, 2000);
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+            }
+
+            const typingSpeed = isDeleting ? 100 : 150;
+            setTimeout(type, typingSpeed);
+        }
+        document.addEventListener('DOMContentLoaded', type);
 
         // Fade-in sections on scroll
         const sections = document.querySelectorAll('.fade-in-section');
@@ -211,16 +378,12 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
+                    observer.unobserve(entry.target);
                 }
             });
-        }, {
-            threshold: 0.1
-        });
-        sections.forEach(section => {
-            observer.observe(section);
-        });
+        }, { threshold: 0.1 });
+        sections.forEach(section => observer.observe(section));
     </script>
 </body>
 </html>
-
-
+ -->
